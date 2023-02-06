@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.4.3.min.js"></script>
+    <script type="text/javascript" src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chat = $.connection.chatHub;
+            var $username = $('#txtUsername');
+            var $message = $('#txtMessage');
+            var $messages = $('#messages');
+            $message.focus();
+            chat.client.sendMessage = function (name, message) {
+                $messages.append('<li><strong>' + name + '</strong>: ' + message + '</li>');
+            };
+            $.connection.hub.start().done(function () {
+                alert("connection start");
+                $('#btnSendMessage').click(function () {
+                    chat.server.send($username.val(), $message.val());
+                    $message.val('').focus();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="width:80px">
+        <label for="txtUserName">User: </label> @Html.TextBox("txtUsername")
+        <br />
+        <label for="txtMessage">Message: </label> @Html.TextBox("txtMessage") <button id="btnSendMessage">Send</button>
+    </div>
+
+    <div id="messages"></div>
+</body>
+</html>
