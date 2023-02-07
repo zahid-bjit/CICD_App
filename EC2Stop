@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stop EC2 Instance') {
+            steps {
+                script {
+                    withAWS(credentials: 'aws-credentials', region: 'ap-southeast-1') {
+                        bat 'aws ec2 stop-instances --instance-ids i-035b47fe7efd4719e'
+                    }
+                }
+            }
+        }
+    }
+}
