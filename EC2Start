@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('Start EC2 Instance') {
+            steps {
+                script {
+                    withAWS(credentials: 'aws-credentials', region: 'ap-southeast-1') {
+                        sh 'aws ec2 start-instances --instance-ids i-035b47fe7efd4719e'
+                    }
+                }
+            }
+        }
