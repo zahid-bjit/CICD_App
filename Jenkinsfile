@@ -1,11 +1,9 @@
 pipeline {
   agent any
+ environment {  
+  dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe'  
+ }  
   stages {
-    stage('hello') {
-      steps {
-        bat 'echo "Hello World"'
-      }
-    }
     stage('Clean'){
     steps{
         bat "dotnet clean ${WORKSPACE}\\CICD_App\\RESTAPITest.sln"
