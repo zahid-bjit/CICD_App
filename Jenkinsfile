@@ -1,23 +1,23 @@
 pipeline {
   agent any
  environment {  
-  dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe'  
+  dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe' 
  }  
   stages {
     stage('Clean'){
     steps{
-        bat "dotnet clean ${WORKSPACE}\\CICD_App\\RESTAPITest.sln"
+        bat "msbuild clean ${WORKSPACE}\\CICD_App\\RESTAPITest.sln"
      }
    }
  stage('Build') {  
    steps {  
-    bat 'dotnet build ${WORKSPACE}\\CICD_App\\RESTAPITest.sln --configuration Release' 
+    bat 'msbuild build ${WORKSPACE}\\CICD_App\\RESTAPITest.sln --configuration Release' 
    }  
   }  
   
   stage("Release"){
       steps {
-      bat 'dotnet build  ${WORKSPACE}\\CICD_App\\RESTAPITest.sln /p:PublishProfile="${WORKSPACE}\\CICD_App\\RESTAPITest\\Properties\\PublishProfiles\\FolderProfile.pubxml" /p:Platform="Any CPU" /p:DeployOnBuild=true /m'
+      bat 'msbuild build  ${WORKSPACE}\\CICD_App\\RESTAPITest.sln /p:PublishProfile="${WORKSPACE}\\CICD_App\\RESTAPITest\\Properties\\PublishProfiles\\FolderProfile.pubxml" /p:Platform="Any CPU" /p:DeployOnBuild=true /m'
     }
   }
   
