@@ -1,7 +1,7 @@
 pipeline {  
  agent any  
  stages {
-    stage('Restore packages') {
+    stage('Restore') {
       steps {
         bat "\"${tool 'MSBuild'}\" RESTAPITest.sln -t:restore -p:RestorePackagesConfig=true"
       }
