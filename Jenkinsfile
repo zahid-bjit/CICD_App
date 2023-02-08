@@ -1,14 +1,9 @@
 pipeline {  
  agent any  
  stages {
-    stage ('Clean workspace') {
-      steps {
-        cleanWs()
-      }
-    }
     stage('Restore packages') {
       steps {
-        bat "\"${tool 'MSBuild'}\" ${workspace}\\CICD_App\\RESTAPITest.sln -t:restore -p:RestorePackagesConfig=true"
+        bat "\"${tool 'MSBuild'}\" RESTAPITest.sln -t:restore -p:RestorePackagesConfig=true"
       }
     }
     stage('Build') {
