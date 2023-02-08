@@ -21,7 +21,7 @@ pipeline {
   	stage('Create Zip Folder') {
       steps {
 				 bat '''cd C:\\
-				 tar.exe acvf BuildArtifacts.zip BuildArtifacts'''
+				 tar.exe acvf restapi.zip BuildArtifacts'''
       }
     }
   } 
