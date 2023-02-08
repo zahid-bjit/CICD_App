@@ -6,6 +6,11 @@ pipeline {
         bat "\"${tool 'MSBuild'}\" RESTAPITest.sln -t:restore -p:RestorePackagesConfig=true"
       }
     }
+    stage('Clean') {
+      steps {
+        bat "\"${tool 'MSBuild'}\" RESTAPITest.sln -t:clean -p:RestorePackagesConfig=true"
+      }
+    }
     stage('Build') {
       steps {
         script {
