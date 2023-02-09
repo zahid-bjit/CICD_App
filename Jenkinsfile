@@ -24,5 +24,25 @@ pipeline {
 				 tar.exe acvf restapi.zip BuildArtifacts'''
       }
     }
+    stage('Stop and Start IIS') {
+      steps {
+          script{
+              boolean continuePipeline = true
+            try {
+              bat 'net stop "w3svc"'
+            } catch(Exception e) {
+              continuePipeline = false
+            }
+            
+            if(continuePipeline) {
+              //do anything
+
+              bat 'net start "w3svc"'
+            }
+          }
+          
+      }
+ }
+
   } 
 } 

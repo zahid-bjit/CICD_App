@@ -305,3 +305,4 @@ D:\Projects\RND\CICD_App\RESTAPITest\obj\Debug\RESTAPITest.csproj.CoreCompileInp
 D:\Projects\RND\CICD_App\RESTAPITest\obj\Debug\RESTAPITest.csproj.CopyComplete
 D:\Projects\RND\CICD_App\RESTAPITest\obj\Debug\RESTAPITest.dll
 D:\Projects\RND\CICD_App\RESTAPITest\obj\Debug\RESTAPITest.pdb
+D:\Projects\RND\CICD_App\RESTAPITest\obj\Debug\RESTAPITest.csproj.AssemblyReference.cache
