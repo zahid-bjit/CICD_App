@@ -36,7 +36,7 @@ pipeline {
 
       stage('Deploy Artifacts to Web Server') {
         steps {
-				 bat 'robocopy /MT:16 C:\\BuildArtifacts\\. \\\\54.255.72.244\\c$\\inetpub\\wwwroot\\restapi /E'
+				 bat "robocopy /MT:16 C:\BuildArtifacts\. \\54.255.72.244\c$\inetpub\wwwroot\restapi /E"
       }
     }
 
