@@ -1,0 +1,14 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stop IIS on Remote Host') {
+            steps {
+                script {
+                    node('windows') {
+                        bat 'powershell.exe -command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock {iisreset /STOP}"'
+                    }
+                }
+            }
+        }
+    }
+}
