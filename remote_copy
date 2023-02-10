@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage('Copy file to remote server') {
+            steps {
+                script {
+                    bat '''
+                        set PSCP_PATH="C:\\Program Files\\PuTTY\\pscp.exe"
+                        set REMOTE_SERVER="Administrator@54.255.72.244"
+                        set LOCAL_FILE="C:\\BuildArtifacts\\"
+                        set REMOTE_PATH="c$\\Backup"
+                        %PSCP_PATH% -i C:\\C:\toolsJenkins\prikey.ppk %LOCAL_FILE% %REMOTE_SERVER%:%REMOTE_PATH%
+                    '''
+                }
+            }
+        }
+    }
+}
