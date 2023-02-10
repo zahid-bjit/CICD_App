@@ -23,26 +23,47 @@ pipeline {
 				 bat '''cd C:\\
 				 tar.exe acvf restapi.zip BuildArtifacts'''
       }
-    }
-    stage('Stop and Start IIS') {
-      steps {
-          script{
-              boolean continuePipeline = true
-            try {
-              bat 'net stop "w3svc"'
-            } catch(Exception e) {
-              continuePipeline = false
-            }
-            
-            if(continuePipeline) {
-              //do anything
 
-              bat 'net start "w3svc"'
+    stage('Stop IIS on Remote Host') {
+      steps {
+              script {
+                    "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
+                    }
+                }
             }
-          }
-          
+
+      stage('Deploy Artifacts to Web Server') {
+        steps {
+				 bat 'robocopy /MT:16 C:\\BuildArtifacts\\. \\\\54.255.72.244\\c$\\C:\\inetpub\\wwwroot\\restapi /E'
       }
- }
+    }
+
+      stage('Start IIS on Remote Host') {
+            steps {
+                script {
+                    "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
+                    }
+                }
+            }
+//     stage('Stop and Start IIS') {
+//       steps {
+//           script{
+//               boolean continuePipeline = true
+//             try {
+//               bat 'net stop "w3svc"'
+//             } catch(Exception e) {
+//               continuePipeline = false
+//             }
+            
+//             if(continuePipeline) {
+//               //do anything
+
+//               bat 'net start "w3svc"'
+//             }
+//           }
+          
+//       }
+//  }
 
   } 
 } 
