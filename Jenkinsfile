@@ -18,13 +18,13 @@ pipeline {
         } 
       } 
     }
-  	stage('Create Zip Folder') {
-      steps {
-				 bat '''cd C:\\
-				 tar.exe acvf Zip\\restapi.zip BuildArtifacts'''
-      }
+  	// stage('Create Zip Folder') {
+    //   steps {
+		// 		 bat '''cd C:\\
+		// 		 tar.exe acvf Zip\\restapi.zip BuildArtifacts'''
+    //   }
 
-    }
+    // }
 
     // stage('Stop IIS on Remote Host') {
     //   steps {
@@ -37,7 +37,7 @@ pipeline {
       stage('Deploy Artifacts to Web Server') {
         steps {
          bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\Administrator Acce$$denied4all'
-         bat 'robocopy /MT:16 C:\\Zip\\. \\\\54.255.72.244\\c$\\Backup /E'
+         bat 'robocopy /MT:16 C:\\BuildArtifacts\\. \\\\54.255.72.244\\c$\\Backup /E'
       }
     }
 
