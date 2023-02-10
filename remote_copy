@@ -9,7 +9,7 @@ pipeline {
                         set REMOTE_SERVER="Administrator@54.255.72.244"
                         set LOCAL_FILE="C:\\BuildArtifacts\\"
                         set REMOTE_PATH="c$\\Backup"
-                        %PSCP_PATH% -i C:\\C:\toolsJenkins\prikey.ppk %LOCAL_FILE% %REMOTE_SERVER%:%REMOTE_PATH%
+                        %PSCP_PATH% -i C:\\toolsJenkins\privkey.ppk %LOCAL_FILE% %REMOTE_SERVER%:%REMOTE_PATH%
                     '''
                 }
             }
