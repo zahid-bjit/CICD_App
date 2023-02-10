@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     
-                        bat "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock {iisreset /STOP}"
+                      powershell invoke-command -computername "TARGET-HOST" -scriptblock {iisreset /STOP}
                     }
                 }
             }
