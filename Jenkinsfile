@@ -42,12 +42,12 @@ pipeline {
       }
     }
 
-      stage('Start IIS on Remote Host') {
-            steps {
-                script {
-                    "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
-                    }
-                }
-            }
-    }
-}
+//       stage('Start IIS on Remote Host') {
+//             steps {
+//                 script {
+//                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
+//                     }
+//                 }
+//             }
+//     }
+// }
