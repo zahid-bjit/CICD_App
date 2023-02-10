@@ -29,7 +29,7 @@ pipeline {
     stage('Stop IIS on Remote Host') {
       steps {
               script {
-                    powershell 'invoke-command -computername 54.255.72.244 -scriptblock {iisreset /STOP}'
+                    "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /STOP}"
                     }
                 }
             }
