@@ -36,6 +36,7 @@ pipeline {
 
       stage('Deploy Artifacts to Web Server') {
         steps {
+         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\Administrator Acce$$denied4all'
          bat 'robocopy /MT:16 C:\\BuildArtifacts\\. \\\\54.255.72.244\\c$\\Backup /E'
       }
     }
