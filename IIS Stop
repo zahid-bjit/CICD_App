@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stop IIS on Remote Server') {
+            steps {
+                script {
+                    def winRM = [
+                        configurations: [
+                            [
+                                winRM: [
+                                    transport: 'basic',
+                                    hostname: '54.255.72.244',
+                                    username: 'Administrator',
+                                    password: 'Acce$$denied4all'
+                                ]
+                            ]
+                        ],
+                        useLocalWorkspace: false
+                    ]
+                    node(winRM) {
+                        bat 'iisreset /STOP'
+                    }
+                }
+            }
+        }
+    }
+}
