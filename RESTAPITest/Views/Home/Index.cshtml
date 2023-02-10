@@ -17,6 +17,11 @@
             $message.focus();
             chat.client.sendMessage = function (name, message) {
                 $messages.append('<li><strong>' + name + '</strong>: ' + message + '</li>');
+                if ($username.val() !== name) {
+                    console.log($username.val());
+                    console.log(name);
+                    showNotification(name, message)
+                }
             };
             $.connection.hub.start().done(function () {
                 alert("connection start");
@@ -36,5 +41,33 @@
     </div>
 
     <div id="messages"></div>
+
+    <button onclick="showNotification('BJIT Group','Welcome to BJITA. Global IT consulting firm')">Notify</button>
+
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>*@
+
+    <script>
+        $(document).ready(function () {
+            console.log(Notification.permission);
+            if (Notification.permission === "granted") {
+                alert("we have permission");
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    console.log(permission);
+                });
+            }
+        });
+        function showNotification(name, message) {
+            const notification = new Notification(name, {
+                body: message,
+                icon: "https://bjitgroup.com/static/svg/common/bjit-logo2.svg"
+            })
+            notification.onclick = (e) => {
+                window.location.href = "https://bjitgroup.com/";
+            };
+        }
+    </script>
+
+
 </body>
 </html>
