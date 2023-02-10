@@ -18,21 +18,21 @@ pipeline {
         } 
       } 
     }
-  	// stage('Create Zip Folder') {
-    //   steps {
+  	 stage('Create Zip Folder') {
+       steps {
 		// 		 bat '''cd C:\\
 		// 		 tar.exe acvf Zip\\restapi.zip BuildArtifacts'''
-    //   }
+       }
 
-    // }
+     }
 
-    // stage('Stop IIS on Remote Host') {
-    //   steps {
-    //           script {
-    //                 "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /STOP}"
-    //                 }
-    //             }
-    //         }
+     stage('Stop IIS on Remote Host') {
+       steps {
+              script {
+                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /STOP}"
+                     }
+                 }
+             }
 
       stage('Deploy Artifacts to Web Server') {
         steps {
@@ -41,12 +41,12 @@ pipeline {
       }
     }
 
-//       stage('Start IIS on Remote Host') {
-//             steps {
-//                 script {
-//                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
-//                     }
-//                 }
-//             }
+       stage('Start IIS on Remote Host') {
+             steps {
+                 script {
+                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
+                     }
+                 }
+             }
      }
  }
