@@ -38,7 +38,6 @@ pipeline {
         steps {
          bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\Administrator Acce$$denied4all'
          bat 'robocopy /MT:16 C:\\Zip\\. \\\\54.255.72.244\\c$\\Backup /E'
-         bat 'NET USE \\\\54.255.72.244\\C$ /D'
       }
     }
 
