@@ -36,7 +36,7 @@ pipeline {
 
       stage('Deploy Artifacts to Web Server') {
         steps {
-         bat 'xcopy C:\\BuildArtifacts\\ \\54.255.72.244\\c$\\Backup\\ /E /I /Y'
+         bat 'xcopy C:\\\\BuildArtifacts\\\\ \\\\54.255.72.244\\\\c$\\\\Backup\\\\ /E /I /Y'
          
       }
     }
