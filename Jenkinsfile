@@ -45,8 +45,6 @@ pipeline {
 		 		  bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\inetpub\\wwwroot\\restapi'  
       }
     }
-
-     }
        stage('Start IIS on Remote Host') {
              steps {
                  script {
@@ -54,5 +52,5 @@ pipeline {
                      }
                  }
              }
-     }
- }
+}
+}
