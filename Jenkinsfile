@@ -24,13 +24,11 @@ pipeline {
 		 		 tar.exe acvf restapi.zip inetpub\\wwwroot\\restapi'''
        }
      }
-     stage('Stop IIS on Remote Host') {
-       steps {
-              script {
-                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /STOP}"
-                     }
-                 }
-             }
+        stage('Stop IIS on Remote Host') {
+            steps {
+                bat 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /stop }"'
+            }
+        }
       stage('Deploy Artifacts to Web Server') {
         steps {
          bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\${USER_NAME}:${PASS}'
@@ -42,12 +40,10 @@ pipeline {
 		 		  bat 'tar.exe -xvf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\'  
       }
     }
-       stage('Start IIS on Remote Host') {
-             steps {
-                 script {
-                     "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
-                     }
-                 }
-             }
+	    stage('Start IIS on Remote Host') {
+            steps {
+                bat 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /start }"'
+            }
+        }
 }
 }
