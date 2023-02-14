@@ -1,26 +1,9 @@
 pipeline {
     agent any
     stages {
-        stage('Stop IIS on Remote Server') {
+        stage('Stop IIS') {
             steps {
-                script {
-                    def winRM = [
-                        configurations: [
-                            [
-                                winRM: [
-                                    transport: 'basic',
-                                    hostname: '54.255.72.244',
-                                    username: 'Administrator',
-                                    password: 'Acce$$denied4all'
-                                ]
-                            ]
-                        ],
-                        useLocalWorkspace: false
-                    ]
-                    node(winRM) {
-                        bat 'iisreset /STOP'
-                    }
-                }
+                bat 'Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock {iisreset /stop}'
             }
         }
     }
