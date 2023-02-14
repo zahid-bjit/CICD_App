@@ -36,7 +36,9 @@ pipeline {
 
       stage('Deploy Artifacts to Web Server') {
         steps {
+         bat 'net use x: \\\\54.255.72.244\\C$'
          bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup"'
+         bat 'net use x: /delete'
          
       }
     }
