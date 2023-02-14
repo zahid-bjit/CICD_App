@@ -42,7 +42,7 @@ pipeline {
     }
   	stage('UnZip Folder') {
       steps {
-		 		  bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\'  
+		 		  bat 'tar.exe -xvf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\'  
       }
     }
        stage('Start IIS on Remote Host') {
