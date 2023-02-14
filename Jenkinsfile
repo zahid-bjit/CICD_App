@@ -37,16 +37,12 @@ pipeline {
       stage('Deploy Artifacts to Web Server') {
         steps {
          bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\Administrator Acce$$denied4all'
-         bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup" /Y'       
-         bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\inetpub\\wwwroot\\restapi'  
-         
+         bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup" /Y'                
       }
     }
   	stage('UnZip Folder') {
       steps {
-		 		script {
-             "invoke-command -computername 54.255.72.244 -scriptblock {iisreset /START}"
-        }
+		 		  bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\inetpub\\wwwroot\\restapi'  
       }
     }
 
