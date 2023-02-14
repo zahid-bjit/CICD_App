@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Stop IIS') {
+            steps {
+                bat 'powershell Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /stop }'
+            }
+        }
+        stage('Start IIS') {
+            steps {
+                bat 'powershell Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /start }'
+            }
+        }
+    }
+}
