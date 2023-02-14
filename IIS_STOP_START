@@ -3,12 +3,7 @@ pipeline {
     stages {
         stage('Stop IIS') {
             steps {
-                bat 'powershell -Command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /stop }"'
-            }
-        }
-        stage('Start IIS') {
-            steps {
-                "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /start }"
+                powershell 'invoke-command -computername app-srv -scriptblock {iisreset /STOP}'
             }
         }
     }
