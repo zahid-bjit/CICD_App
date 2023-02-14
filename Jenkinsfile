@@ -14,14 +14,14 @@ pipeline {
     stage('Build') {
       steps {
         script {
-          bat "\"${tool 'MSBuild'}\" RESTAPITest.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=C:\\BuildArtifacts"
+          bat "\"${tool 'MSBuild'}\" RESTAPITest.sln /p:DeployOnBuild=true /p:DeployDefaultTarget=WebPublish /p:WebPublishMethod=FileSystem /p:SkipInvalidConfigurations=true /t:build /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeleteExistingFiles=True /p:publishUrl=C:\\inetpub\\wwwroot\\restapi"
         } 
       } 
     }
   	 stage('Create Zip Folder') {
        steps {
 		 		 bat '''cd C:\\
-		 		 tar.exe acvf restapi.zip BuildArtifacts'''
+		 		 tar.exe acvf restapi.zip inetpub\\wwwroot\\restapi'''
        }
 
      }
@@ -42,7 +42,7 @@ pipeline {
     }
   	stage('UnZip Folder') {
       steps {
-		 		  bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\inetpub\\wwwroot\\restapi'  
+		 		  bat 'tar.exe -xf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\'  
       }
     }
        stage('Start IIS on Remote Host') {
