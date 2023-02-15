@@ -1,5 +1,8 @@
 pipeline {  
- agent any  
+ agent any 
+ 	   environment {
+                APP_SRV_CREDS = credentials('1919f59d-d637-4108-b80c-0066b932aeed')
+            } 
  stages {
     stage('Restore') {
       steps {
@@ -31,7 +34,7 @@ pipeline {
         }
       stage('Deploy Artifacts to Web Server') {
         steps {
-         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\${USER_NAME}:${PASS}'
+         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\${APP_SRV_CREDS_USR}:${APP_SRV_CREDS_PSW}'
          bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup" /F /Y'                
       }
     }
