@@ -36,7 +36,7 @@ pipeline {
         steps {
          withCredentials([usernamePassword(credentialsId: 'myCredentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
          bat 'xcopy /s "C:\\\\restapi.zip" "\\54.255.72.244\\c$\\Backup" /U /Y /I /Q'
-	 }
+	
     }
   	stage('UnZip Folder') {
       steps {
@@ -50,3 +50,4 @@ pipeline {
         }
 }
 }
+ }
