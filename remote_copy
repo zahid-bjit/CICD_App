@@ -1,18 +1,21 @@
 pipeline {
     agent any
+
     stages {
-        stage('Copy file to remote server') {
+        stage('Copy files using WinRM') {
             steps {
                 script {
-                    bat '''
-                        set PSCP_PATH="C:\\Program Files\\PuTTY\\pscp.exe"
-                        set REMOTE_SERVER="Administrator@54.255.72.244"
-                        set LOCAL_FILE="C:\\BuildArtifacts\\Web.config"
-                        set REMOTE_PATH="c$\\Backup"
-                        %PSCP_PATH% -i C:\\toolsJenkins\\privkey.ppk %LOCAL_FILE% %REMOTE_SERVER%:%REMOTE_PATH%
-                    '''
+                    withCredentials([usernamePassword(credentialsId: 'myCredentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                        winrm connection: [
+                            host: '54.255.72.244',
+                            user: USERNAME,
+                            password: PASSWORD,
+                            authentication: 'basic'
+                        ], command: "xcopy /E /H /Y C:\\restapi.zip\\ \\\\54.255.72.244\\c$\\Backup\\"
+                    }
                 }
             }
         }
     }
 }
+
