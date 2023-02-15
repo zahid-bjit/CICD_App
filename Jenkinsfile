@@ -35,7 +35,7 @@ pipeline {
         stage('Deploy Artifacts to Web Server') {
              steps {
                withCredentials([usernamePassword(credentialsId: 'myCredentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
-                bat 'robocopy /MT:16 C:\\restapi.zip\\. \\54.255.72.244\\c$\\Backup /E
+                bat 'robocopy /MT:16 C:\\restapi.zip\\. \\\\54.255.72.244\\c$\\Backup /E'
           }	
         }
       }
