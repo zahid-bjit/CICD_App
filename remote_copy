@@ -11,7 +11,8 @@ pipeline {
                             user: USERNAME,
                             password: PASSWORD,
                             authentication: 'basic'
-                        ], command: "xcopy /E /H /Y C:\\restapi.zip\\ \\\\54.255.72.244\\c$\\Backup\\"
+                        ], 
+                            command: "xcopy /E /H /Y C:\\restapi.zip\\ \\\\54.255.72.244\\c$\\Backup\\"
                     }
                 }
             }
