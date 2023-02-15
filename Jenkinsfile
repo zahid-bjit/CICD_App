@@ -48,6 +48,5 @@ pipeline {
                 bat 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /start }"'
             }
         }
-}
-}
  }
+}
