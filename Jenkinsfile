@@ -34,7 +34,7 @@ pipeline {
         }
       stage('Deploy Artifacts to Web Server') {
         steps {
-         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\${APP_SRV_CREDS_USR}:${APP_SRV_CREDS_PSW}'
+         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\withEnv(["MY_USERNAME=${env.username}", "MY_PASSWORD=${env.password}"])'
          bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup" /F /Y'                
       }
     }
