@@ -36,8 +36,8 @@ pipeline {
         steps {
          withCredentials([usernamePassword(credentialsId: 'myCredentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
          bat 'xcopy /s "C:\\\\restapi.zip" "\\54.255.72.244\\c$\\Backup" /U /Y /I /Q'
-	
-    }
+        }	
+      }
   	stage('UnZip Folder') {
       steps {
 		 		  bat 'tar.exe -xvf \\\\54.255.72.244\\c$\\Backup\\restapi.zip -C \\\\54.255.72.244\\c$\\'  
@@ -47,6 +47,6 @@ pipeline {
             steps {
                 bat 'powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Invoke-Command -ComputerName 54.255.72.244 -ScriptBlock { iisreset /start }"'
             }
-        }
- }
+    }
+  }
 }
