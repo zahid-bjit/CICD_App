@@ -34,9 +34,9 @@ pipeline {
         }
       stage('Deploy Artifacts to Web Server') {
         steps {
-         bat 'NET USE \\\\54.255.72.244\\C$ /u:app-srv\\withEnv(["MY_USERNAME=${env.Username}", "MY_PASSWORD=${env.Password}"])'
-         bat 'xcopy C:\\\\restapi.zip "\\\\54.255.72.244\\c$\\Backup" /F /Y'                
-      }
+         withCredentials([usernamePassword(credentialsId: 'myCredentials', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+         bat 'xcopy /s "C:\\\\restapi.zip" "\\54.255.72.244\\c$\\Backup" /U /Y /I /Q'
+	 }
     }
   	stage('UnZip Folder') {
       steps {
